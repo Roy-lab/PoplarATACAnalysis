@@ -348,6 +348,7 @@ python python gtf_edit.py
 <br/>
 Forging the BSGenome object for the Poplar genome in the R environment is essential as this custom Poplar genome R package will help to generate a custom "**genome annotation**" object in ArchR.
 **Requires seed file:** scripts/BSgenome-Ptrichocarpa-v4.1-seed #**NOTE:** This seed file should not have an extension like .txt and can be made in Mac textEditor or other text editors.
+
 ```
 cd <your_working_directory>
 conda activate /mnt/dv/wid/projects6/Roy-singlecell3/bartholomew_lab/suvo_work/ArchR_analysis/scripts/suvo_ArchR
@@ -359,6 +360,7 @@ R
  > forgeBSgenomeDataPkg("BSgenome-Ptrichocarpa-v4.1-seed", seqs_srcdir = seqs_srcdir, destdir = destdir, replace = TRUE)
  > q()
 ```
+
 **Output forged R package:** BSgenome.pPopTri
 <br/>
 **NOTE:** This package folder could not be uploaded in Github due to its size however, it is already [uploaded](https://drive.google.com/drive/folders/1r1JXM4sgSlrP5jL7wl6Y20Fc-wtKtX0e?usp=drive_link) in Roy Lab shared [Google Drive folder.](https://drive.google.com/drive/folders/1VndDmLDSP_Xvv40U15cwJc7C1K4mz06_?usp=drive_link). Anyone needs to just download the package into the working directory for making the custom "**genome annotation**" object in ArchR.
