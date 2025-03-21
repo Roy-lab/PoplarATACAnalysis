@@ -169,7 +169,10 @@ Column 8: The frame for the genomic feature. For "transcript" and "exon", the va
 Column 9: The attributes of features that contain two key-value pairs: (i) transcript ID, a unique identifier for the transcript, and (ii) gene ID, a unique identifier for the gene associated with the transcript.
 ```
 
-> **ATAC files:**
+> **Critical assessment of the input ATAC files:**
+
+There are some  discrepancies in the sequence names from three ATAC files of the Poplar ATAC data, which are as follows
+![image](https://github.com/user-attachments/assets/6df31770-defc-4c43-95c9-543c1a0f22c0)
 
  
 
