@@ -461,7 +461,10 @@ R
 > names(input_files) <- setnames
 > file.exists(input_files)
 [1] TRUE
-> ArrowFiles <- createArrowFiles(inputFiles = input_files, geneAnnotation = geneAnnotation, genomeAnnotation = genomeAnnotation, minTSS = 1, minFrags = 1, addTileMat = TRUE, TileMatParams = list(tileSize = 1000), addGeneScoreMat = TRUE) #Creating arrowfiles. Reference: https://www.archrproject.com/bookdown/creating-arrow-files.html, https://www.archrproject.com/reference/createArrowFiles.html; 'addGeneScoreMat' set to "TRUE" for getting genescore matrix.
+> ArrowFiles <- createArrowFiles(inputFiles = input_files, geneAnnotation = geneAnnotation, genomeAnnotation = genomeAnnotation, minTSS = 1, minFrags = 1, addTileMat = TRUE, TileMatParams = list(tileSize = 1000), addGeneScoreMat = TRUE) #Creating arrowfiles.
+# 'minTSS' refers to the minimum number of transcription start sites (TSS) required for a cell to be included in the analysis.
+# 'minFrags' refers to the minimum number of fragments required for a cell to be included in the analysis.
+# for human and mouse dataset, minTSS=4, minFrags=1000 filter application gives good results.
 > library(nabor) #required package for synthetic doublet removal
 > doubScores <- addDoubletScores(input = ArrowFiles,k = 10, knnMethod = "UMAP", LSIMethod = 1)
 #'k' Refers to how many cells near a "pseudo-doublet" to count.
