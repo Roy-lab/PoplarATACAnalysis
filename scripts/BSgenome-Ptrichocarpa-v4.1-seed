@@ -1,0 +1,15 @@
+Package: BSgenome.pPopTri
+Title: Full genome sequence for Populus trichocarpa
+Description: Full genome sequence for Populus trichocarpa provided by Kirstlab
+Version: 1.0.0
+organism: Populus trichocarpa
+common_name: Cottonwood
+provider: KirstLab_Uflorida
+genome: GCA_000002775.4
+release_date: 2024/08
+source_url: /mnt/dv/wid/projects7/Roy-plants/kirstlab/data/Poplar_ATAC_Feb2025/Globus_Data_Wendell/README.html
+organism_biocview: Populus_trichocarpa
+BSgenomeObjname: Ptrichocarpa
+seqs_srcdir: /mnt/dv/wid/projects7/Roy-plants/kirstlab/scripts/Poplar_ArchR
+seqfile_name: filtered_genome.2bit
+circ_seqs: character(0)
