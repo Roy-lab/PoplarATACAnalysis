@@ -120,7 +120,7 @@ R
 
 > **ATAC files:**
 
-Wendell sent us the three important ATAC files, which are as follows:
+Wendell sent us the three crucial ATAC files, which are as follows:
 
 **1. ATAC-Seq fragment file:** fragments_corrected_dedup_count.tsv.gz
 ```
@@ -132,16 +132,42 @@ This is a fragment file with the following configuration:
      Chr01	8107	8173	CACTTGTTGTTCATGG	1
      Chr01	8114	8172	AATGTCACTCGGACCT	1
 where,
-Column 1: Chromosome information.
-Column 2: Chromosome start coordinate.
-Column 3: Chromosome end coordinate.
+Column 1: Sequence name (Chromosome or scaffold) information.
+Column 2: Sequence (Chromosome or scaffold) start coordinate.
+Column 3: Sequence (Chromosome or scaffold) end coordinate.
 Column 4: ATAC fragment ID.
 Column 5: Number of counts of the ATAC fragment.
 ```  
-
 **2. Reference genome sequence file from which the fragments were referenced:** genome.fa
-**3. Reference genome data (GTF) from which the fragments were referenced:** gene.gtf
-
+```
+This is a fasta file of poplar genome which is used as reference in the sequencing:
+> head -5 /mnt/dv/wid/projects7/Roy-plants/kirstlab/scripts/Poplar_ArchR/moved_files/genome.fa 
+     >Chr01
+     aaccctaaaccctaaaccctaaaccctaaaccctaaacctaaacccctaaaccctaaaccctaaaccctaaaccctaaac
+     cctaaaccctaaaccctaaaccctaaaccctaaaccctaaaaccctaaaccctaaaaccctaaaccctaaaccctaaacc
+     ctaaaccctaaaccaaaccctaaacctaacctaaaccctaaaccctaaaccctaaaccctagaaccctaaaccctaaccc
+     taaccctaaaccctaaacctaacccctaaaccctaaaccctaaaccctaaacaaccctaaaccctaaaccctaaacccta
+```  
+**3. Reference General Feature Format (GTF) file from which the fragments were referenced:** gene.gtf
+```
+This is a genome information GTF file of poplar genome which is used as reference in the sequencing:
+> head -5 gene.gtf 
+     Chr01	phytozomev13	transcript	13697	17702	.	-	.	transcript_id "Potri.001G000400.5.v4.1"; gene_id "Potri.001G000400.v4.1"
+     Chr01	phytozomev13	exon	13697	13947	.	-	.	transcript_id "Potri.001G000400.5.v4.1"; gene_id "Potri.001G000400.v4.1";
+     Chr01	phytozomev13	exon	16186	16258	.	-	.	transcript_id "Potri.001G000400.5.v4.1"; gene_id "Potri.001G000400.v4.1";
+     Chr01	phytozomev13	exon	16368	16463	.	-	.	transcript_id "Potri.001G000400.5.v4.1"; gene_id "Potri.001G000400.v4.1";
+     Chr01	phytozomev13	exon	17511	17702	.	-	.	transcript_id "Potri.001G000400.5.v4.1"; gene_id "Potri.001G000400.v4.1";
+where,
+Column 1: Sequence (Chromosome or scaffold) information of where the feature is located.
+Column 2: The source of annotation from Kirstlab. This indicates the annotation comes from phytozome v13 database.
+Column 3: The type of feature. The value can be - "transcript", "exon" or "CDS" (coding sequence).
+Column 4: The feature's start genomic coordinate (1-based index).
+Column 5: The feature's end genomic coordinate (1-based index).
+Column 6: The score of the feature. "." (dot) indicates no score is provided.
+Column 7: The chromosomal strand information of the feature. The value can be - "+" or "-".
+Column 8: The frame for the genomic feature. For "transcript" and "exon", the value is "." (dot) means the frame is not applicable because they are not CDS (coding sequence). CDS's  respective numerical frame score (0,1 and 2) is provided. 0 means the first base of the CDS aligns with the start codon., 1 means the first base of the CDS is shifted by one nucleotide (it would align differently), and 2 means two nucleotides shift the first base.
+Column 9: The attributes of features that contain two key-value pairs: (i) transcript ID, a unique identifier for the transcript, and (ii) gene ID, a unique identifier for the gene associated with the transcript.
+```
 
 
 
