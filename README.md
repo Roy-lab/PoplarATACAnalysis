@@ -171,8 +171,18 @@ Column 9: The attributes of features that contain two key-value pairs: (i) trans
 
 > **Critical assessment of the input ATAC files:**
 
-There are some  discrepancies in the sequence names from three ATAC files of the Poplar ATAC data, which are as follows
+
+**NOTE-1:**
+
+There are some  discrepancies in the sequence names from three ATAC files of the Poplar ATAC data, which are as follows,
 ![image](https://github.com/user-attachments/assets/6df31770-defc-4c43-95c9-543c1a0f22c0)
+As the scaffold information is mismatched in these three files, only chromosome 1 to 19 ATAC data is processed through this pipeline.
+
+**NOTE-2:**
+
+The sequence names for chromosomes in the poplar genome is represented as: Chr01, Chr02, Chr03, Chr04, Chr05, Chr06, Chr07, Chr08, Chr09, Chr10, Chr11, Chr12, Chr13, Chr14, Chr15, Chr16, Chr17, Chr18, Chr19. As [ArchR usage](https://www.archrproject.com/bookdown/getting-set-up.html) generally requires the prefix of annotation as chr, therefore, the present study changes the sequence name to: chr1, chr2, chr3, chr4, chr5, chr6, chr7, chr8, chr9, chr10, chr11, chr12, chr13, chr14, chr15, chr16, chr17, chr18, chr19
+
+
 
  
 
