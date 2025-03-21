@@ -358,13 +358,74 @@ conda activate /mnt/dv/wid/projects6/Roy-singlecell3/bartholomew_lab/suvo_work/A
 Next, open the R environment
 R
  > library(BSgenomeForge)
- > seqs_srcdir <- "/results"
- > destdir <- "/results"
+ > seqs_srcdir <- "/mnt/dv/wid/projects7/Roy-plants/kirstlab/scripts/Poplar_ArchR/"
+ > destdir <- "/mnt/dv/wid/projects7/Roy-plants/kirstlab/scripts/Poplar_ArchR"
  > forgeBSgenomeDataPkg("BSgenome-Ptrichocarpa-v4.1-seed", seqs_srcdir = seqs_srcdir, destdir = destdir, replace = TRUE)
  > q()
 ```
 
-**Output forged R package:** BSgenome.pPopTri
+**Output forged R package for Poplar genome database:** BSgenome.pPopTri
 <br/>
-**NOTE:** This package folder could not be uploaded in Github due to its size however, it is already [uploaded](https://drive.google.com/drive/folders/1r1JXM4sgSlrP5jL7wl6Y20Fc-wtKtX0e?usp=drive_link) in Roy Lab shared [Google Drive folder.](https://drive.google.com/drive/folders/1VndDmLDSP_Xvv40U15cwJc7C1K4mz06_?usp=drive_link). Anyone needs to just download the package into the working directory for making the custom "**genome annotation**" object in ArchR.
+**NOTE:** This package folder could not be uploaded to Github due to its size; however, it is already [uploaded](https://drive.google.com/drive/folders/1r1JXM4sgSlrP5jL7wl6Y20Fc-wtKtX0e?usp=drive_link) in Roy Lab shared [Google Drive folder](https://drive.google.com/drive/folders/1VndDmLDSP_Xvv40U15cwJc7C1K4mz06_?usp=drive_link). Anyone must download the package into the working directory to make the custom "**genome annotation**" object in ArchR.
+<br/>
+
+## Step-5: Forging the Taxonomic (Txdb) and Organism (Org.db) database object for making a custom Poplar genome R package in R environment:
+
+
+Now, making the Taxonomic database (Txdb) and Organism (Org.db) database for the Poplar genome in the R environment is essential as this custom Poplar genome R package will help to generate custom **gene annotation** object in ArchR.
+<br/>
+**Requires BSgenome object:** BSgenome.pPopTri
+<br/>
+```
+cd <your_working_directory>
+conda activate /mnt/dv/wid/projects6/Roy-singlecell3/bartholomew_lab/suvo_work/ArchR_analysis/scripts/suvo_ArchR
+Next, open the R environment
+R
+ > library(txdbmaker)
+ > txdb_ptri <- makeTxDbFromGFF("renamed_gene.gtf")
+ > saveDb(txdb_ptri,file = "Ptrichocarpa_533_v4.1-genes.txdb")
+ > library(AnnotationForge)
+ > install.packages("BSgenome.pPopTri", repos=NULL, type="source", lib="/mnt/dv/wid/projects6/Roy-singlecell3/bartholomew_lab/suvo_work/ArchR_analysis/scripts/suvo_ArchR/lib/R/library")
+ > library(BSgenome.pPopTri)
+ > ptri_gtf_msymbols <- import("renamed_gene.gtf")
+ > gene_info <- unique(mcols(subset(ptri_gtf_msymbols, type == "transcript"))[,c("gene_id","transcript_id")])
+ > NAS <- is.na(gene_info$gene_id)
+ > gene_info$gene_id[NAS] <- gene_info$gene_id[NAS]
+ > fSym <- unique(gene_info[, c(1,2)])
+ > gene_info$symbol <- gene_info$gene_id
+ > fSym <- unique(gene_info[, c(1,3)])
+ > colnames(fSym) <- c("GID", "SYMBOL")
+ > ensembl_trans <- unique(gene_info[, c(1:2)])
+ > colnames(ensembl_trans) <- c("GID", "ENSEMBLTRANS")
+ > ensembl <- unique(gene_info[, c(1,1)])
+ > colnames(ensembl) <- c("GID", "ENSEMBL")
+ > library(AnnotationForge)
+ > makeOrgPackage(gene_info = fSym,
+  ensembl_trans = ensembl_trans,
+  ensembl = ensembl,
+  version = "0.1",
+  maintainer = "Suvojit Hazra <shazra3@wisc.edu>",
+  author = "shazra3@wisc.edu",
+  outputDir = "/mnt/dv/wid/projects7/Roy-plants/kirstlab/scripts/Poplar_ArchR/",
+  tax_id= "3694",
+  genus = "Populus",
+  species = "trichocarpa",
+  goTable=NULL,
+  verbose = T)
+ > q()
+```
+
+**Output forged R package for Poplar Organism database:** org.Ptrichocarpa.eg.db
+<br/>
+**NOTE:** This package folder could not be uploaded in Github due to its size however, it is already [uploaded](https://drive.google.com/drive/folders/1WyguU6_rvE6Sq-2rybPj7uqXGuBeSpoZ?usp=drive_link) in Roy Lab shared [Google Drive folder](https://drive.google.com/drive/folders/1VndDmLDSP_Xvv40U15cwJc7C1K4mz06_?usp=drive_link). Anyone must download the package into the working directory to make the custom "**gene annotation**" object in ArchR.
+<br/>
+**Output forged R package for Poplar Taxonomic database:** Ptrichocarpa_533_v4.1-genes.txdb
+<br/>
+**NOTE:** This package folder could not be uploaded in Github due to its size however, it is already [uploaded]([https://drive.google.com/drive/folders/1r1JXM4sgSlrP5jL7wl6Y20Fc-wtKtX0e?usp=drive_link) in Roy Lab shared [Google Drive folder](https://drive.google.com/drive/folders/1VndDmLDSP_Xvv40U15cwJc7C1K4mz06_?usp=drive_link). Anyone must download the package into the working directory to make the custom "**gene annotation**" object in ArchR.
+<br/>
+
+
+
+
+
 
