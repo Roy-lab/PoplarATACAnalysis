@@ -347,7 +347,10 @@ python python gtf_edit.py
 ## Step-4: Forging the BSGenome object for making a custom Poplar genome R package in the R environment:
 <br/>
 Forging the BSGenome object for the Poplar genome in the R environment is essential as this custom Poplar genome R package will help to generate a custom "**genome annotation**" object in ArchR.
-**Requires seed file:** scripts/BSgenome-Ptrichocarpa-v4.1-seed #**NOTE:** This seed file should not have an extension like .txt and can be made in Mac textEditor or other text editors.
+<br/>
+**Requires seed file:** scripts/BSgenome-Ptrichocarpa-v4.1-seed
+<br/>
+**NOTE:** This seed file should not have an extension like .txt and can be made in Mac textEditor or other text editors.
 
 ```
 cd <your_working_directory>
