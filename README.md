@@ -342,10 +342,8 @@ python python gtf_edit.py
 **GTF file:** [results/renamed_gene.gtf](https://github.com/Roy-lab/PoplarATACAnalysis/blob/main/results/renamed_gene.gtf)
 
 <br/>
-<br/>
 
 ## Step-4: Forging the BSGenome object for making a custom Poplar genome R package in the R environment:
-
 
 
 Forging the BSGenome object for the Poplar genome in the R environment is essential as this custom Poplar genome R package will help to generate a custom **genome annotation** object in ArchR.
