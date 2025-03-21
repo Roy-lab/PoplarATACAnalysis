@@ -267,11 +267,41 @@ wc -l results/filtered_fragments_corrected_dedup_count.tsv.gz
 
 ### Step-1B: Rename the sequence name to chr1-chr19 from Chr01-Chr19:
 
-Script file: 
+Script file: [scripts/rename_fragment_file.sh](https://github.com/Roy-lab/PoplarATACAnalysis/blob/main/scripts/rename_fragment_file.sh)
+```
+chmod 775 rename_fragment_file.sh
+./rename_fragment_file.sh
+```
+**Output file:** results/renamed_filtered_fragments_corrected_dedup_count.tsv.gz
 
+### Step-1C: Making the updated tabix file for the fragment:
+```
+#Here, we need the tabix function from the conda environment
+for first time install tabix in conda environment use: conda activate your_environment; conda install -c bioconda htslib #for tabix
+module load conda3-py311_23.11.0-2
+conda activate /mnt/dv/wid/projects6/Roy-singlecell3/bartholomew_lab/suvo_work/ArchR_analysis/scripts/suvo_ArchR
+gunzip renamed_filtered_fragments_corrected_dedup_count.tsv.gz # Decompress the fragment file
+dos2unix renamed_filtered_fragments_corrected_dedup_count.tsv # Convert to Unix format (remove Windows-style line endings)
+bgzip renamed_filtered_fragments_corrected_dedup_count.tsv # Recompress using bgzip (for Tabix compatibility)
+tabix -s 1 -b 2 -e 3 renamed_filtered_fragments_corrected_dedup_count.tsv.gz # Index with Tabix
+```
+**Output file:** results/renamed_filtered_fragments_corrected_dedup_count.tsv.gz.tbi
 
- 
+## Step-2: Updating the fasta file discrepancies:
 
+There are two sub-steps to remove fragment file discrepancies,
+**2A:** Rename the sequence name to chr1-chr19 from Chr01-Chr19.
+**2B:** Converting .fa file .2bit file compatible for R environment.
 
+### Step-2A: Rename the sequence name to chr1-chr19 from Chr01-Chr19:
 
-
+Script file: [scripts/filter_coordinates.sh](https://github.com/Roy-lab/PoplarATACAnalysis/blob/main/scripts/filter_coordinates.sh)
+```
+chmod 775 filter_coordinates.sh
+./filter_coordinates.sh
+wc -l ExampleData/fragments_corrected_dedup_count.tsv.gz
+## 2069308
+wc -l results/filtered_fragments_corrected_dedup_count.tsv.gz
+## 2012859
+```
+**Output file:** results/filtered_fragments_corrected_dedup_count.tsv.gz
