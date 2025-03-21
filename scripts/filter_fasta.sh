@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # Define the input and output file paths
-input_file="genome.fa"
-output_file="filtered_genome.fa"
+input_file="ExampleData/genome.fa"
+output_file="results/filtered_genome.fa"
 
 # Process the file: remove scaffold sequences and rename chromosome headers
 awk '
