@@ -1,7 +1,7 @@
 import re
 
 # Define the input and output file paths
-input_file = "gene.gtf"
+input_file = "ExampleData/gene.gtf"
 output_file = "renamed_gene.gtf"
 
 # Open the input and output files
