@@ -169,6 +169,8 @@ Column 8: The frame for the genomic feature. For "transcript" and "exon", the va
 Column 9: The attributes of features that contain two key-value pairs: (i) transcript ID, a unique identifier for the transcript, and (ii) gene ID, a unique identifier for the gene associated with the transcript.
 ```
 
+> **ATAC files:**
+
  
 
 
