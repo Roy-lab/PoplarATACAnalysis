@@ -329,9 +329,14 @@ python python gtf_edit.py
 > Now the input files are prepared for ArchR input, which are as follows:
 
 **Fragment file:** [results/renamed_filtered_fragments_corrected_dedup_count.tsv.gz](https://github.com/Roy-lab/PoplarATACAnalysis/blob/main/results/renamed_filtered_fragments_corrected_dedup_count.tsv.gz)
+
 **Tabix index file for the fragment file:** [results/renamed_filtered_fragments_corrected_dedup_count.tsv.gz.tbi](https://github.com/Roy-lab/PoplarATACAnalysis/blob/main/results/renamed_filtered_fragments_corrected_dedup_count.tsv.gz.tbi)
+
 **2bit fasta file:** [results/filtered_genome.2bit](https://github.com/Roy-lab/PoplarATACAnalysis/blob/main/results/filtered_genome.2bit)
+
 **GTF file:** [results/renamed_gene.gtf](https://github.com/Roy-lab/PoplarATACAnalysis/blob/main/results/renamed_gene.gtf)
+
+
 
 
 
