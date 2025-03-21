@@ -258,8 +258,6 @@ Script file: [scripts/filter_coordinates.sh](https://github.com/Roy-lab/PoplarAT
 ```
 chmod 775 filter_coordinates.sh
 ./filter_coordinates.sh
-##Bash outputs:
-##Total removed lines: 3996193
 wc -l ExampleData/fragments_corrected_dedup_count.tsv.gz
 ## 2069308
 wc -l results/filtered_fragments_corrected_dedup_count.tsv.gz
