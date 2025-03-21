@@ -201,7 +201,7 @@ Chr07	15561420
 Chr08	19195260
 Chr09	12987399
 Chr10	22799081
-Chr11	**19288771**
+Chr11	`**19288771**`
 Chr12	15589050
 Chr13	15705617
 Chr14	17801709
@@ -236,8 +236,8 @@ However, some fragment has end sequence coordinate numbers higher than the chrom
 ```
 zcat fragments_corrected_dedup_count.tsv.gz | grep Chr11 | awk '{diff = $3 - $2; print $0, diff}' | sort -k3,3nr -k6,6nr | grep 19288781
 
-Chr11  19288645  **19288781**  GGCCTACTCCAGACTA  1 136
-Chr11  19288749  **19288781**  TGTGCACCAGCCGTGA  2 32
+Chr11  19288645  `**19288781**`  GGCCTACTCCAGACTA  1 136
+Chr11  19288749  `**19288781**`  TGTGCACCAGCCGTGA  2 32
 ```
 The bold marked end coordinate of the fragment (19288781) is higher than the length of chromosome 11 length, i.e., 19288771. Therefore, this creepy fragment with a dull end chromosome number must be cleaned from the fragment file.
 
