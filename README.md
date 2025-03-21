@@ -125,7 +125,7 @@ Wendell sent us the three crucial ATAC files (see, attached file: [Kirstlab_Cele
 **1. ATAC-Seq fragment file:** fragments_corrected_dedup_count.tsv.gz [First 5000 lines](https://github.com/Roy-lab/PoplarATACAnalysis/blob/main/ExampleData/fragments_corrected_dedup_count.tsv.gz) #[fragments_corrected_dedup_count.tsv.gz](https://github.com/Roy-lab/PoplarATACAnalysis/blob/main/Kirstlab_Celescope_README.md)
 ```
 This is a fragment file with the following configuration:
-> zcat fragments_corrected_dedup_count.tsv.gz | head -5
+> zcat ExampleData/fragments_corrected_dedup_count.tsv.gz | head -5
      Chr01	7504	7539	AACAGCGCTTGGCTTA	2
      Chr01	8106	8152	AACCGCCGCCAGTCTC	1
      Chr01	8107	8166	GGTAGCTGTAGGAGCG	1
@@ -141,7 +141,7 @@ Column 5: Number of counts of the ATAC fragment.
 **2. Reference genome sequence file from which the fragments were referenced:** genome.fa [First 5000 lines](https://github.com/Roy-lab/PoplarATACAnalysis/blob/main/ExampleData/genome.fa) #[Ptrichocarpa_533_v4.0.softmasked.fa](https://github.com/Roy-lab/PoplarATACAnalysis/blob/main/Kirstlab_Celescope_README.md)
 ```
 This is a fasta file of poplar genome which is used as reference in the sequencing:
-> head -5 /mnt/dv/wid/projects7/Roy-plants/kirstlab/scripts/Poplar_ArchR/moved_files/genome.fa 
+> head -5 ExampleData/genome.fa 
      >Chr01
      aaccctaaaccctaaaccctaaaccctaaaccctaaacctaaacccctaaaccctaaaccctaaaccctaaaccctaaac
      cctaaaccctaaaccctaaaccctaaaccctaaaccctaaaaccctaaaccctaaaaccctaaaccctaaaccctaaacc
@@ -151,7 +151,7 @@ This is a fasta file of poplar genome which is used as reference in the sequenci
 **3. Reference General Feature Format (GTF) file from which the fragments were referenced:** gene.gtf [First 5000 lines](https://github.com/Roy-lab/PoplarATACAnalysis/blob/main/ExampleData/gene.gtf) #[Ptrichocarpa_533_v4.1.gtf](https://github.com/Roy-lab/PoplarATACAnalysis/blob/main/Kirstlab_Celescope_README.md)
 ```
 This is a genome information GTF file of poplar genome which is used as reference in the sequencing:
-> head -5 gene.gtf 
+> head -5 ExampleData/gene.gtf 
      Chr01	phytozomev13	transcript	13697	17702	.	-	.	transcript_id "Potri.001G000400.5.v4.1"; gene_id "Potri.001G000400.v4.1"
      Chr01	phytozomev13	exon	13697	13947	.	-	.	transcript_id "Potri.001G000400.5.v4.1"; gene_id "Potri.001G000400.v4.1";
      Chr01	phytozomev13	exon	16186	16258	.	-	.	transcript_id "Potri.001G000400.5.v4.1"; gene_id "Potri.001G000400.v4.1";
