@@ -247,6 +247,25 @@ The marked end coordinate of the fragments like "GGCCTACTCCAGACTA" or "TGTGCACCA
 
 ## Step-1: Updating the fragment file discrepancies:
 
+There are three sub-steps to remove fragment file discrepancies,
+**1A:** Remove the fragments with end sequence coordinates higher than the chromosomal sequence length.
+**1B:** Rename the sequence name to chr1-chr19 from Chr01-Chr19.
+**1C:** Making the updated tabix file for the fragment.
+
+### Step-1A: Remove the fragments with end sequence coordinates higher than the chromosomal sequence length:
+
+Script file: [scripts/filter_coordinates.sh](https://github.com/Roy-lab/PoplarATACAnalysis/blob/main/scripts/filter_coordinates.sh)
+```
+chmod 775 filter_coordinates.sh
+./filter_coordinates.sh
+```
+**Output file:** results/filtered_fragments_corrected_dedup_count.tsv.gz
+
+### Step-1B: Rename the sequence name to chr1-chr19 from Chr01-Chr19:
+
+Script file: 
+
+
  
 
 
