@@ -428,6 +428,8 @@ R
 
 ## Step-6: Running ArchR:
 
+**Followed:** [latest ArchR manual](https://www.archrproject.com/bookdown/index.html) and [latest ArchR tutorial](https://www.archrproject.com/articles/Articles/tutorial.html)
+
 As all the input files and packages are prepared, now the stepwise ArchR run is as follows:
 ```
 #pwd=/mnt/dv/wid/projects7/Roy-plants/kirstlab/scripts/Poplar_ArchR/
