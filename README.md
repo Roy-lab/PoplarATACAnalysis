@@ -263,7 +263,7 @@ wc -l ExampleData/fragments_corrected_dedup_count.tsv.gz
 wc -l results/filtered_fragments_corrected_dedup_count.tsv.gz
 ## 2012859
 ```
-**Output file:** results/filtered_fragments_corrected_dedup_count.tsv.gz
+**Output file:** [results/filtered_fragments_corrected_dedup_count.tsv.gz](https://github.com/Roy-lab/PoplarATACAnalysis/blob/main/results/filtered_fragments_corrected_dedup_count.tsv.gz) #First 5000 lines due to space issue in Github
 
 ### Step-1B: Rename the sequence name to chr1-chr19 from Chr01-Chr19:
 
@@ -272,7 +272,7 @@ Script file: [scripts/rename_fragment_file.sh](https://github.com/Roy-lab/Poplar
 chmod 775 rename_fragment_file.sh
 ./rename_fragment_file.sh
 ```
-**Output file:** results/renamed_filtered_fragments_corrected_dedup_count.tsv.gz
+**Output file:** [results/renamed_filtered_fragments_corrected_dedup_count.tsv.gz](https://github.com/Roy-lab/PoplarATACAnalysis/blob/main/results/renamed_filtered_fragments_corrected_dedup_count.tsv.gz)
 
 ### Step-1C: Making the updated tabix file for the fragment:
 ```
@@ -285,7 +285,9 @@ dos2unix renamed_filtered_fragments_corrected_dedup_count.tsv # Convert to Unix 
 bgzip renamed_filtered_fragments_corrected_dedup_count.tsv # Recompress using bgzip (for Tabix compatibility)
 tabix -s 1 -b 2 -e 3 renamed_filtered_fragments_corrected_dedup_count.tsv.gz # Index with Tabix
 ```
-**Output file:** results/renamed_filtered_fragments_corrected_dedup_count.tsv.gz.tbi
+**Output file:** [results/renamed_filtered_fragments_corrected_dedup_count.tsv.gz.tbi](https://github.com/Roy-lab/PoplarATACAnalysis/blob/main/results/renamed_filtered_fragments_corrected_dedup_count.tsv.gz.tbi) #First 5000 lines due to space issue in Github
+
+
 
 ## Step-2: Updating the fasta file discrepancies:
 
@@ -295,13 +297,21 @@ There are two sub-steps to remove fragment file discrepancies,
 
 ### Step-2A: Rename the sequence name to chr1-chr19 from Chr01-Chr19:
 
-Script file: [scripts/filter_coordinates.sh](https://github.com/Roy-lab/PoplarATACAnalysis/blob/main/scripts/filter_coordinates.sh)
+Script file: [scripts/filter_fasta.sh](https://github.com/Roy-lab/PoplarATACAnalysis/blob/main/scripts/filter_fasta.sh)
 ```
-chmod 775 filter_coordinates.sh
-./filter_coordinates.sh
-wc -l ExampleData/fragments_corrected_dedup_count.tsv.gz
-## 2069308
-wc -l results/filtered_fragments_corrected_dedup_count.tsv.gz
-## 2012859
+chmod 775 filter_fasta.sh
+./filter_fasta.sh
 ```
-**Output file:** results/filtered_fragments_corrected_dedup_count.tsv.gz
+**Output file:** [results/filtered_genome.fa](https://github.com/Roy-lab/PoplarATACAnalysis/blob/main/results/filtered_genome.fa) #First 5000 lines due to space issue in Github
+
+### Step-2B: Converting .fa file .2bit file compatible for R environment:
+
+Script file: [scripts/convert_fasta_to_twobit.sh](https://github.com/Roy-lab/PoplarATACAnalysis/blob/main/scripts/convert_fasta_to_twobit.sh)
+```
+chmod 775 convert_fasta_to_twobit.sh
+./convert_fasta_to_twobit.sh
+```
+**Output file:** [results/filtered_genome.2bit](https://github.com/Roy-lab/PoplarATACAnalysis/blob/main/results/filtered_genome.2bit) #First 5000 lines due to space issue in Github
+
+
+
