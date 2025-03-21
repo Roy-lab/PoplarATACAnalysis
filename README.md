@@ -7,7 +7,7 @@ Analysis of ATAC-Seq data from the stem of the Poplar (Populus trichocarpa) plan
 
 > **Installing an ArchR conda environment:**
 
-Currently, ArchR supports the R version [4.1 and 4.4](https://github.com/GreenleafLab/ArchR). Therefore, making a conda environment with ArchR with v4.4+ is recommended. However, some functionalities, like graph pdf making, require packages like Cairo, which need a lower version dependency, i.e., 4.3. Sometimes, downgrading the ArchR version may be necessary to get full functionalities. The current analysis installed the R version 4.4.2 but downgraded it to 4.3.1 for the latest functionalities. Some packages have the 4.4.2 dependencies, but this setting is recommended.
+Currently, ArchR supports the R version [4.1 and 4.4](https://github.com/GreenleafLab/ArchR). Therefore, making a conda environment with ArchR with v4.4+ is recommended. However, some functionalities, like graph pdf making, require packages like Cairo, which need a lower version dependency, i.e., 4.3. Sometimes, downgrading the ArchR version may be necessary to get full functionalities. The current analysis installed the R version 4.4.2 but downgraded it to 4.3.1 for the latest functionalities. Some packages have the 4.4.2 dependencies, but this integrative dependency setting is recommended.
 ```
 The following R session information is used for current analysis:
 > sessionInfo()
@@ -84,9 +84,12 @@ loaded via a namespace (and not attached):
 [58] S4Arrays_1.6.0           digest_0.6.37            SparseArray_1.6.2       
 [61] rjson_0.2.23             memoise_2.0.1            lifecycle_1.0.4         
 [64] httr_1.4.7               bit64_4.5.2             
-> 
 ```
 
+The installation of conda environment can be followed by this following ways:
+```
+
+```
 
 
 
