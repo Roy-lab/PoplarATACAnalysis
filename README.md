@@ -186,8 +186,64 @@ Chr01, Chr02, Chr03, Chr04, Chr05, Chr06, Chr07, Chr08, Chr09, Chr10, Chr11, Chr
 As [ArchR usage](https://www.archrproject.com/bookdown/getting-set-up.html) generally requires the prefix of annotation as "chr", the present study changes the sequence name in all three files to:<br/>
 chr1, chr2, chr3, chr4, chr5, chr6, chr7, chr8, chr9, chr10, chr11, chr12, chr13, chr14, chr15, chr16, chr17, chr18, chr19
 
+**NOTE-3:**
+
+The fasta files describes that the length of chromosome is as following:
+```
+awk '/^>/ {if (seq) print chrom, length(seq); seq=""; chrom=$0; next} {seq = seq $0} END {if (seq) print chrom, length(seq)}' genome.fa
+Chr01	49788581
+Chr02	25242375
+Chr03	21678634
+Chr04	24140038
+Chr05	24981103
+Chr06	27516652
+Chr07	15561420
+Chr08	19195260
+Chr09	12987399
+Chr10	22799081
+Chr11	**19288771**
+Chr12	15589050
+Chr13	15705617
+Chr14	17801709
+Chr15	15231745
+Chr16	14619816
+Chr17	15189755
+Chr18	16264003
+Chr19	15623655
+scaffold_104	239390
+scaffold_1549	75560
+scaffold_1697	72059
+scaffold_1865	68284
+scaffold_1944	66818
+scaffold_2151	63019
+scaffold_2281	60697
+scaffold_25	640640
+scaffold_2555	56646
+scaffold_2798	52914
+scaffold_3255	45437
+scaffold_3421	40476
+scaffold_3435	40109
+scaffold_3488	36978
+scaffold_3518	35470
+scaffold_3588	28433
+scaffold_3607	24495
+scaffold_3611	23661
+scaffold_3618	21309
+scaffold_3621	20187
+scaffold_45	362030
+```
+However, some fragment has end sequence coordinate numbers higher than the chromosome length. like as the following example in Chromosome11, it is seen that,
+```
+zcat fragments_corrected_dedup_count.tsv.gz | grep Chr11 | awk '{diff = $3 - $2; print $0, diff}' | sort -k3,3nr -k6,6nr | grep 19288781
+
+Chr11  19288645  **19288781**  GGCCTACTCCAGACTA  1 136
+Chr11  19288749  **19288781**  TGTGCACCAGCCGTGA  2 32
+```
+The bold marked end coordinate of the fragment (19288781) is higher than the length of chromosome 11 length, i.e., 19288771. Therefore, this creepy fragment with a dull end chromosome number must be cleaned from the fragment file.
 
 
+
+> **Critical assessment of the input ATAC files:**
  
 
 
