@@ -122,7 +122,7 @@ R
 
 Wendell sent us the three crucial ATAC files (see, attached file: [Kirstlab_Celescope_README.md](https://github.com/Roy-lab/PoplarATACAnalysis/blob/main/Kirstlab_Celescope_README.md)), which are as follows:
 
-**1. ATAC-Seq fragment file:** fragments_corrected_dedup_count.tsv.gz
+**1. ATAC-Seq fragment file:** fragments_corrected_dedup_count.tsv.gz [First 5000 lines](https://github.com/Roy-lab/PoplarATACAnalysis/blob/main/ExampleData/fragments_corrected_dedup_count.tsv.gz) #[fragments_corrected_dedup_count.tsv.gz](https://github.com/Roy-lab/PoplarATACAnalysis/blob/main/Kirstlab_Celescope_README.md)
 ```
 This is a fragment file with the following configuration:
 > zcat fragments_corrected_dedup_count.tsv.gz | head -5
