@@ -6,6 +6,7 @@ Analysis of ATAC-Seq data from the stem of the Poplar (Populus trichocarpa) plan
 2. Unix OS with conda environment for ArchR. We used the latest Rocky CentOS and prebuilt conda environment for ArchR. For a new user, [ArchR website](https://www.archrproject.com/) is recommended for installing ArchR software.
 
 > **Installing an ArchR conda environment:**
+
 Currently, ArchR supports the R version [4.1 and 4.4](https://github.com/GreenleafLab/ArchR). Therefore, making a conda environment with ArchR with v4.4+ is recommended. However, some functionalities, like graph pdf making, require packages like Cairo, which need a lower version dependency, i.e., 4.3. Sometimes, downgrading the ArchR version may be necessary to get full functionalities. The current analysis installed the R version 4.4.2 but downgraded it to 4.3.1 for the latest functionalities. Some packages have the 4.4.2 dependencies, but this setting is recommended.
 ```
 The following R session information is used for current analysis:
