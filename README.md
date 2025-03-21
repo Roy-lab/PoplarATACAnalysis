@@ -183,7 +183,7 @@ As the scaffold information is mismatched in these three files, only chromosome 
 
 The sequence names for chromosomes in the poplar genome is represented as:\
 Chr01, Chr02, Chr03, Chr04, Chr05, Chr06, Chr07, Chr08, Chr09, Chr10, Chr11, Chr12, Chr13, Chr14, Chr15, Chr16, Chr17, Chr18, Chr19.\
-As [ArchR usage](https://www.archrproject.com/bookdown/getting-set-up.html) generally requires the prefix of annotation as chr, the present study changes the sequence name to:\ 
+As [ArchR usage](https://www.archrproject.com/bookdown/getting-set-up.html) generally requires the prefix of annotation as chr, the present study changes the sequence name to: \ 
 chr1, chr2, chr3, chr4, chr5, chr6, chr7, chr8, chr9, chr10, chr11, chr12, chr13, chr14, chr15, chr16, chr17, chr18, chr19
 
 
