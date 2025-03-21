@@ -168,7 +168,7 @@ Column 7: The chromosomal strand information of the feature. The value can be - 
 Column 8: The frame for the genomic feature. For "transcript" and "exon", the value is "." (dot) means the frame is not applicable because they are not CDS (coding sequence). CDS's  respective numerical frame score (0,1 and 2) is provided. 0 means the first base of the CDS aligns with the start codon., 1 means the first base of the CDS is shifted by one nucleotide (it would align differently), and 2 means two nucleotides shift the first base.
 Column 9: The attributes of features that contain two key-value pairs: (i) transcript ID, a unique identifier for the transcript, and (ii) gene ID, a unique identifier for the gene associated with the transcript.
 ```
-
+ 
 
 
 
