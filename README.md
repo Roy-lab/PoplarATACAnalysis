@@ -272,7 +272,7 @@ Script file: [scripts/rename_fragment_file.sh](https://github.com/Roy-lab/Poplar
 chmod 775 rename_fragment_file.sh
 ./rename_fragment_file.sh
 ```
-**Output file:** [results/renamed_filtered_fragments_corrected_dedup_count.tsv.gz](https://github.com/Roy-lab/PoplarATACAnalysis/blob/main/results/renamed_filtered_fragments_corrected_dedup_count.tsv.gz)
+**Output file:** [results/renamed_filtered_fragments_corrected_dedup_count.tsv.gz](https://github.com/Roy-lab/PoplarATACAnalysis/blob/main/results/renamed_filtered_fragments_corrected_dedup_count.tsv.gz) #First 5000 lines due to space issue in Github
 
 ### Step-1C: Making the updated tabix file for the fragment:
 ```
@@ -315,3 +315,12 @@ chmod 775 convert_fasta_to_twobit.sh
 
 
 
+## Step-3: Updating the GTF file discrepancies:
+
+The sequence name is now renamed to chr1-chr19 from Chr01-Chr19 in the GTF file.
+
+Script file: [scripts/python gtf_edit.py](https://github.com/Roy-lab/PoplarATACAnalysis/blob/main/scripts/gtf_edit.py)
+```
+python python gtf_edit.py
+```
+**Output file:** [results/renamed_gene.gtf](https://github.com/Roy-lab/PoplarATACAnalysis/blob/main/results/renamed_gene.gtf)
