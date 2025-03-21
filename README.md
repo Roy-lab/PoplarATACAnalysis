@@ -367,6 +367,7 @@ R
 **Output forged R package for Poplar genome database:** BSgenome.pPopTri
 <br/>
 **NOTE:** This package folder could not be uploaded to Github due to its size; however, it is already [uploaded](https://drive.google.com/drive/folders/1r1JXM4sgSlrP5jL7wl6Y20Fc-wtKtX0e?usp=drive_link) in Roy Lab shared [Google Drive folder](https://drive.google.com/drive/folders/1VndDmLDSP_Xvv40U15cwJc7C1K4mz06_?usp=drive_link). Anyone must download the package into the working directory to make the custom "**genome annotation**" object in ArchR.
+
 <br/>
 
 ## Step-5: Forging the Taxonomic (Txdb) and Organism (Org.db) database object for making a custom Poplar genome R package in R environment:
@@ -425,6 +426,101 @@ R
 <br/>
 
 
+## Step-6: Running ArchR:
+
+As all the input files and packages are prepared, now the stepwise ArchR run is as follows:
+```
+#pwd=/mnt/dv/wid/projects7/Roy-plants/kirstlab/scripts/Poplar_ArchR/
+module load gcc-13.2.0 
+module load conda3-py311_23.11.0-2 
+conda activate /mnt/dv/wid/projects6/Roy-singlecell3/bartholomew_lab/suvo_work/ArchR_analysis/scripts/suvo_ArchR
+R
+> library(ArchR)
+> library(GenomicFeatures)
+> getwd()
+[1] "/mnt/dv/wid/projects7/Roy-plants/kirstlab/scripts/Poplar_ArchR"
+> install.packages("org.Ptrichocarpa.eg.db", repos=NULL, type="source")
+> library(org.Ptrichocarpa.eg.db) #adding oragnism database annotation library
+> install.packages("BSgenome.pPopTri", repos=NULL, type="source")
+> library(BSgenome.pPopTri) #adding genome annotation library
+> txdb_obj <- loadDb("Ptrichocarpa_533_v4.1-genes.txdb") #adding taxonomy database annotation library
+> library(tidyverse)
+> geneAnnotation <- createGeneAnnotation(TxDb = txdb_obj, OrgDb = org.Ptrichocarpa.eg.db) #creating gene annotation object
+> genomeAnnotation <- createGenomeAnnotation(genome = BSgenome.pPopTri) #creating genome annotation object
+> head_dir <- '/mnt/dv/wid/projects7/Roy-plants/kirstlab/scripts/Poplar_ArchR/'
+> filenames = list('renamed_filtered_fragments_corrected_dedup_count.tsv.gz') #reading fragment file
+> library(Cairo) #this helps in generating figure files (.pdf), for this R version needs downgradation from 4.4.2 to 4.3.1, otherwise, figures are not generating.
+> library(ggplot2)
+> filenames = list('renamed_filtered_fragments_corrected_dedup_count.tsv.gz') #checking fragment file is being read into R.
+> filenames = as.character(filenames)
+> input_files = paste0(head_dir, filenames)
+> setnames = list('Poplar_stem')
+> setnames = as.character(setnames)
+> names(input_files) <- setnames
+> file.exists(input_files)
+[1] TRUE
+> ArrowFiles <- createArrowFiles(inputFiles = input_files, geneAnnotation = geneAnnotation, genomeAnnotation = genomeAnnotation, minTSS = 1, minFrags = 1, addTileMat = TRUE, TileMatParams = list(tileSize = 1000), addGeneScoreMat = TRUE) #Creating arrowfiles. Reference: https://www.archrproject.com/bookdown/creating-arrow-files.html, https://www.archrproject.com/reference/createArrowFiles.html; 'addGeneScoreMat' set to "TRUE" for getting genescore matrix.
+> library(nabor) #required package for synthetic doublet removal
+> doubScores <- addDoubletScores(input = ArrowFiles,k = 10, knnMethod = "UMAP", LSIMethod = 1)
+#'k' Refers to how many cells near a "pseudo-doublet" to count.
+#'knnMethod' Refers to the embedding to use for nearest neighbor search with doublet projection.
+> saveRDS(genomeAnnotation, "genomeAnnotation.rds") #saving genome annotation object for future use.
+> saveRDS(geneAnnotation, "geneAnnotation.rds") #saving gene annotation object for future use.
+> genomeAnnotation <- readRDS("genomeAnnotation.rds") #reading genome annotation object from R data file (.rds) which was just saved.
+> geneAnnotation <- readRDS("geneAnnotation.rds") #reading gene annotation object from R data file (.rds) which was just saved.
+> PoplarStem <- ArchR::ArchRProject(ArrowFiles = ArrowFiles, outputDirectory = "/mnt/dv/wid/projects7/Roy-plants/kirstlab/scripts/Poplar_ArchR/PoplarStem", geneAnnotation = geneAnnotation, genomeAnnotation = genomeAnnotation, copyArrows = TRUE) #Creating ArchR object 'PoplarStem' for future use.
+> saveArchRProject(PoplarStem) #Saving ArchR object 'PoplarStem' for future use.
+> summarize(as.data.frame(PoplarStem@cellColData), count = n(), .by=Sample) #Summarize the number of cells in ArchR object 'PoplarStem'.
+##       Sample count
+##1 Poplar_stem 12855
+> p1 <- plotGroups(ArchRProj = PoplarStem, groupBy = "Sample", colorBy = "cellColData", name = "TSSEnrichment", plotAs = "ridges")
+> p2 <- plotGroups(ArchRProj = PoplarStem, groupBy = "Sample", colorBy = "cellColData", name = "TSSEnrichment", plotAs = "violin", alpha = 0.4, addBoxPlot = TRUE)
+> p3 <- plotGroups(ArchRProj = PoplarStem, groupBy = "Sample", colorBy = "cellColData", name = "log10(nFrags)", plotAs = "ridges")
+> p4 <- plotGroups(ArchRProj = PoplarStem, groupBy = "Sample", colorBy = "cellColData", name = "log10(nFrags)", plotAs = "violin", alpha = 0.4, addBoxPlot = TRUE)
+> plotPDF(p1, p2, p3, p4, name = "QC-Sample-Statistics.pdf",ArchRProj = PoplarStem, width = 4, height = 4) #Generating Quality Control (QC) figure.
+> getwd()
+##[1] "/mnt/dv/wid/projects7/Roy-plants/kirstlab/scripts/Poplar_ArchR"
+> save(file ='PoplarStem.Rdata', list = ls()) #Save the project into an R data file for future use.
+> addGeneScoreMatrix(input = PoplarStem, geneModel = "exp(-abs(x)/5000) + exp(-1)", extendUpstream = c(1000, 1e+05), extendDownstream = c(1000, 1e+05), useTSS = TRUE, extendTSS = 1000, tileSize = 1000, force = TRUE) #Adding genescore matrix if previously 'addGeneScoreMat' set to "FALSE" during creation of ArrowFiles.
+> save(file ='PoplarStem.Rdata', list = ls())
+> Gene_score <- getMatrixFromProject(ArchRProj = PoplarStem, useMatrix = "GeneScoreMatrix")
+> Gene_info<-as_tibble(rowData(Gene_score))
+> Gene_info #Information of genes.
+> write_tsv(Gene_info, 'gene_info.tsv')
+> Gene_id<-as.data.frame(Gene_info$name)                                     
+> Gene_id #Gene IDs.
+> write.table(Gene_id, 'gene_ids.tsv', col.names = FALSE, row.names = FALSE)
+> cell_info <- as_tibble(colData(Gene_score))
+> cell_info #Information of cells.
+> write_tsv(cell_info, 'cell_info.tsv')
+> cell_ids <- colnames(Gene_score)                                           
+> cell_ids
+> cell_ids <- tibble(cell_ids)
+> cell_ids <- cell_ids %>% rename('barcodes' = cell_ids)
+> cell_ids #Cell IDs.
+> write_tsv(cell_ids, 'cell_ids.tsv')
+> scores <- as.matrix(assay(Gene_score, 1))                                  
+#Warning message: In asMethod(object) : sparse->dense coercion: allocating vector of size 3.3 GiB
+> scores #Genescore matrix.
+> write.table(scores, 'gene_scores.tsv', sep = '\t', col.names =FALSE, row.names = FALSE)
+
+Output folder: /mnt/dv/wid/projects7/Roy-plants/kirstlab/scripts/Poplar_ArchR/
+
+Output sub-folders:
+
+ArchR log files: ArchRLogs
+QualityControl: QC stats
+Temporary folder: tmp
+Saved project: PoplarStem
+
+Output files:
+
+Genescore matrix (gene x cells; dimesion: 34488 x 12856): gene_scores.tsv 
+Genes data from genescore matrix (Gene: 34488): gene_ids.tsv 
+Cells data from genescore matrix (Cell: 12856): cell_ids.tsv
+```
+
+**NOTE:** This above-mentioned ArchR R script is demonstrated as it was run previously. The steps are replicative; make sure to change the filename and folders as per the analysis.
 
 
 
