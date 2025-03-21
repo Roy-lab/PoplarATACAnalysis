@@ -421,7 +421,7 @@ R
 <br/>
 **Output forged R package for Poplar Taxonomic database:** Ptrichocarpa_533_v4.1-genes.txdb
 <br/>
-**NOTE:** This package folder could not be uploaded in Github due to its size however, it is already [uploaded]([https://drive.google.com/drive/folders/1r1JXM4sgSlrP5jL7wl6Y20Fc-wtKtX0e?usp=drive_link) in Roy Lab shared [Google Drive folder](https://drive.google.com/drive/folders/1VndDmLDSP_Xvv40U15cwJc7C1K4mz06_?usp=drive_link). Anyone must download the package into the working directory to make the custom "**gene annotation**" object in ArchR.
+**NOTE:** This package folder could not be uploaded in Github due to its size however, it is already [uploaded](https://drive.google.com/file/d/1AAKP3uYh6yAoTULKWwcNMMA1OcV7velU/view?usp=drive_link) in Roy Lab shared [Google Drive folder](https://drive.google.com/drive/folders/1VndDmLDSP_Xvv40U15cwJc7C1K4mz06_?usp=drive_link). Anyone must download the package into the working directory to make the custom "**gene annotation**" object in ArchR.
 <br/>
 
 
