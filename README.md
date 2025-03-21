@@ -138,7 +138,7 @@ Column 3: Sequence (Chromosome or scaffold) end coordinate.
 Column 4: ATAC fragment ID.
 Column 5: Number of counts of the ATAC fragment.
 ```  
-**2. Reference genome sequence file from which the fragments were referenced:** genome.fa [First 5000 lines]([https://github.com/Roy-lab/PoplarATACAnalysis/blob/main/ExampleData/gene.gtf](https://github.com/Roy-lab/PoplarATACAnalysis/blob/main/ExampleData/genome.fa) #[Ptrichocarpa_533_v4.0.softmasked.fa](https://github.com/Roy-lab/PoplarATACAnalysis/blob/main/Kirstlab_Celescope_README.md)
+**2. Reference genome sequence file from which the fragments were referenced:** genome.fa [First 5000 lines](https://github.com/Roy-lab/PoplarATACAnalysis/blob/main/ExampleData/genome.fa) #[Ptrichocarpa_533_v4.0.softmasked.fa](https://github.com/Roy-lab/PoplarATACAnalysis/blob/main/Kirstlab_Celescope_README.md)
 ```
 This is a fasta file of poplar genome which is used as reference in the sequencing:
 > head -5 /mnt/dv/wid/projects7/Roy-plants/kirstlab/scripts/Poplar_ArchR/moved_files/genome.fa 
