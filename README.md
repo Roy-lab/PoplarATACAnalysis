@@ -121,6 +121,7 @@ R
 > **ATAC files:**
 
 Wendell sent us the three important ATAC files, which are as follows:
+
 **1. ATAC-Seq fragment file:** fragments_corrected_dedup_count.tsv.gz
      This is a fragment file with the following configuration:
      
