@@ -118,4 +118,18 @@ R
 ## Reference webpage: http://biostars.org/p/498049/
 ```
 
-> **Installing an ArchR conda environment:**
+> **ATAC files:**
+
+Wendell sent us the three important ATAC files, which are as follows:
+**1. ATAC-Seq fragment file:** fragments_corrected_dedup_count.tsv.gz
+     This is a fragment file with the following configuration:
+     
+
+**2. Reference genome sequence file from which the fragments were referenced:** genome.fa
+**3. Reference genome data (GTF) from which the fragments were referenced:** gene.gtf
+
+
+
+
+
+
