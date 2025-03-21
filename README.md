@@ -86,9 +86,35 @@ loaded via a namespace (and not attached):
 [64] httr_1.4.7               bit64_4.5.2             
 ```
 
-The installation of conda environment can be followed by this following ways:
+The making of the related conda environment can be followed in the following ways from UNIX terminal:
 ```
-
+cd <your_working_directory> e.g., <your_working_directory>=/mnt/dv/wid/projects6/Roy-singlecell3/bartholomew_lab/suvo_work/ArchR_analysis/scripts/
+conda config --add channels conda-forge
+conda config --set channel_priority strict
+conda search r-base
+conda create -n --prefix=<your_conda_environment_name> python=3.6 e.g. <your_conda_environment_name>=suvo_ArchR
+# Output:
+# To activate this environment, use
+#     $ conda activate /mnt/dv/wid/projects6/Roy-singlecell3/bartholomew_lab/suvo_work/ArchR_analysis/scripts/suvo_ArchR
+# To deactivate an active environment, use
+#   $ conda deactivate
+conda activate /mnt/dv/wid/projects6/Roy-singlecell3/bartholomew_lab/suvo_work/ArchR_analysis/scripts/suvo_ArchR
+conda install -c conda-forge r-base=4.4.2 # the R base can be chosen to a lower version like, 4.3.1 or 4.1.3, but it can downgraded later.
+conda install -c conda-forge -c bioconda r-seurat=4 #Seurat tool install into conda environment
+conda install -c conda-forge mamba #Mamba tool install into conda environment
+conda install -c conda-forge -c bioconda bioconductor-chromvar #Chromvar tool install into conda environment
+conda install -c conda-forge -c bioconda bioconductor-motifmatchr #Motifmachr tool install into conda environment
+conda install -c conda-forge -c bioconda macs2 $Macs2 tool install into conda environment
+conda install r-devtools #Devtools intall into conda environment
+##next opening R environment to install ArchR
+R
+ > if (!requireNamespace("BiocManager", quietly = TRUE)) install.packages("BiocManager")
+ > library(devtools)
+ > devtools::install_github("GreenleafLab/ArchR", ref="master", repos = BiocManager::repositories())
+ > library(ArchR)
+ > ArchR::installExtraPackages()
+ > q()
+## [Reference webpage](http://biostars.org/p/498049/)
 ```
 
 
