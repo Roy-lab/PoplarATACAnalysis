@@ -325,6 +325,8 @@ python python gtf_edit.py
 ```
 **Output file:** [results/renamed_gene.gtf](https://github.com/Roy-lab/PoplarATACAnalysis/blob/main/results/renamed_gene.gtf) #First 5000 lines due to space issue in Github
 
+<br/>
+<br/>
 
 > Now the input files are prepared for ArchR input, which are as follows:
 
