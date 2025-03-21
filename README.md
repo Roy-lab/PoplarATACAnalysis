@@ -124,8 +124,8 @@ Wendell sent us the three important ATAC files, which are as follows:
 
 **1. ATAC-Seq fragment file:** fragments_corrected_dedup_count.tsv.gz
 ```
-     This is a fragment file with the following configuration:
-     zcat fragments_corrected_dedup_count.tsv.gz | head -5
+This is a fragment file with the following configuration:
+> zcat fragments_corrected_dedup_count.tsv.gz | head -5
      Chr01	7504	7539	AACAGCGCTTGGCTTA	2
      Chr01	8106	8152	AACCGCCGCCAGTCTC	1
      Chr01	8107	8166	GGTAGCTGTAGGAGCG	1
